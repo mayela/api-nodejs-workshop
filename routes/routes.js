@@ -1,4 +1,5 @@
 var faker = require("faker");
+var UserController = require("../controllers/users")
 
 var appRouter = function (app) {
 
@@ -6,14 +7,8 @@ var appRouter = function (app) {
     res.status(200).send("Welcome to our restful API");
   });
 
-  app.get("/user", function (req, res) {
-    var data = ({
-      firstName: faker.name.firstName(),
-      lastName: faker.name.lastName(),
-      username: faker.internet.userName(),
-      email: faker.internet.email()
-    });
-    res.status(200).send(data);
+  app.get("/users", function (req, res, next) {
+    UserController.getUsers(req, res, next);
   });
 
   app.get("/users/:num", function (req, res) {
@@ -29,9 +24,7 @@ var appRouter = function (app) {
           email: faker.internet.email()
       });
     }
-
     res.status(200).send(users);
-
    } 
    else {
     res.status(400).send({ message: 'invalid number supplied' });

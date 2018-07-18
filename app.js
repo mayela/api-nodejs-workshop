@@ -15,10 +15,6 @@ var server = app.listen(3000, function () {
     console.log("app running on port.", server.address().port);
 });
 
-mongoose.connect('mongodb://localhost/todo-list');
-
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function() {
-});
-
+mongoose.connect('mongodb://127.0.0.1:27017/todo-list', { useNewUrlParser: true })
+.then(()=> { console.log(`Succesfully Connected to the Mongodb Database  at URL : mongodb://127.0.0.1:27017/todo-list`)})
+.catch(()=> { console.log(`Error Connecting to the Mongodb Database at URL : mongodb://127.0.0.1:27017/todo-list`)})

@@ -1,6 +1,6 @@
 var User = require('../models/user.js');
 
-export.getUsers = (req, res, next) => {
+exports.getUsers = (req, res, next) => {
   User.find((err, users) => {
   if (err) {
     next(new Error(err));
@@ -9,5 +9,6 @@ export.getUsers = (req, res, next) => {
     res.status(200).send(users);
   }
   });
-};
+}
+
 

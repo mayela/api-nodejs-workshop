@@ -1,35 +1,36 @@
 var faker = require("faker");
-var UserController = require("../controllers/users")
+var userController = require("../controllers/users");
+var taskController = require('../controllers/tasks');
 
 var appRouter = function (app) {
 
   app.get("/", function(req, res) {
-    res.status(200).send("Welcome to our restful API");
+    res.status(200).send("REST API");
   });
 
-  app.get("/users", function (req, res, next) {
-    UserController.getUsers(req, res, next);
+  app.get("/users", (req, res, next) => {
+    userController.getUsers(req, res, next);
   });
 
-  app.get("/users/:num", function (req, res) {
-    var users = [];
-    var num = req.params.num;
+  app.post("/users", (req, res, next) => {
+    userController.createUser(req, res, next);
+  });
 
-    if (isFinite(num) && num  > 0 ) {
-      for (i = 0; i <= num-1; i++) {
-        users.push({
-          firstName: faker.name.firstName(),
-          lastName: faker.name.lastName(),
-          username: faker.internet.userName(),
-          email: faker.internet.email()
-      });
-    }
-    res.status(200).send(users);
-   } 
-   else {
-    res.status(400).send({ message: 'invalid number supplied' });
-   }
- });
+  app.get("/users/:id", (req, res, next) => {
+    userController.getUser(req, res, next);
+  });
+
+  app.put("/users/:id", (req, res, next) => {
+    userController.updateUser(req, res, next);
+  });
+
+  app.delete("/users/:id", (req, res, next) => {
+    userController.deleteUser(req, res, next);
+  });
+
+  app.get("/tasks", (req, res, next) => {
+    taskController.getTasks(req, res, next);
+  });
 }
 
 module.exports = appRouter;

@@ -31,6 +31,22 @@ var appRouter = function (app) {
   app.get("/tasks", (req, res, next) => {
     taskController.getTasks(req, res, next);
   });
+
+  app.post("/tasks", (req, res, next) => {
+    taskController.createTask(req, res, next);
+  });
+
+  app.get("/tasks/:id", (req, res, next) => {
+    taskController.getTask(req, res, next);
+  });
+
+  app.put("/tasks/:id", (req, res, next) => {
+    taskController.updateTask(req, res, next);
+  });
+
+  app.delete("/tasks/:id", (req, res, next) => {
+    taskController.deleteTask(req, res, next);
+  });
 }
 
 module.exports = appRouter;

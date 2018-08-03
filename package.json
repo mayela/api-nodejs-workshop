@@ -4,7 +4,7 @@
   "description": "Workshop build your first api in NodeJS",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -25,5 +25,10 @@
     "express": "^4.16.3",
     "faker": "^4.1.0",
     "mongoose": "^5.2.4"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "chai-http": "^4.0.0",
+    "mocha": "^5.2.0"
   }
 }

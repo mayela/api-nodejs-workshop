@@ -100,7 +100,7 @@ describe('Tasks', () => {
               });
           task.save((err, task) => {
                  chai.request('http://localhost:3000')
-                  .delete('/tasks/' + task.id)
+                  .delete('/tasks/' + task._id)
                   .end((err, res) => {
                       res.should.have.status(204);
                     done();

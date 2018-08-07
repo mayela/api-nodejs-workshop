@@ -105,7 +105,7 @@ describe('Users', () => {
               });
           user.save((err, user) => {
                  chai.request('http://localhost:3000')
-                  .delete('/users/' + user.id)
+                  .delete('/users/' + user._id)
                   .end((err, res) => {
                       res.should.have.status(204);
                     done();
